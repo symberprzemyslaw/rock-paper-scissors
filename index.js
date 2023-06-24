@@ -4,10 +4,31 @@ function getComputerChoice(){
     return choices[randomNum]
 }
 
+//UPDATE
+
+const rockBtn = document.querySelector('#rock')
+const paperBtn = document.querySelector('#paper')
+const scissorsBtn = document.querySelector('#scissors')
+
 const computerSelection = getComputerChoice()
-let playerSelection = prompt("Paper or what?").toLowerCase()
+//let playerSelection = prompt("Paper or what?").toLowerCase()
+let playerSelection;
 let computerScore = 0
 let playerScore = 0
+
+const btns = [rockBtn,paperBtn,scissorsBtn]
+rockBtn.addEventListener('click', function(){
+    playerSelection = "rock"
+    console.log(playerSelection)
+})
+paperBtn.addEventListener('click', function(){
+    playerSelection = "paper"
+    console.log(playerSelection)
+})
+scissorsBtn.addEventListener('click', function(){
+    playerSelection = "scissors"
+    console.log(playerSelection)
+})
 
 
 function playRound(computerSelection, playerSelection){
@@ -28,7 +49,6 @@ function playRound(computerSelection, playerSelection){
     }
 
 }
-playRound()
-document.body.innerHTML = `
+/*document.body.innerHTML = `
     Computer: ${computerScore} Player: ${playerScore}
-`
+` */
