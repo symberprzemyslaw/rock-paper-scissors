@@ -5,12 +5,17 @@ function getComputerChoice(){
 }
 
 //UPDATE
+// do zrobienia :
+// Uporzdkowa to wszystko co tu jest, mniej tego kodu.
+// zrobic dne ui.
+const scores = document.querySelector("#scores")
+const message = document.querySelector('#message')
 
 const rockBtn = document.querySelector('#rock')
 const paperBtn = document.querySelector('#paper')
 const scissorsBtn = document.querySelector('#scissors')
 
-const computerSelection = getComputerChoice()
+
 //let playerSelection = prompt("Paper or what?").toLowerCase()
 let playerSelection;
 let computerScore = 0
@@ -19,19 +24,42 @@ let playerScore = 0
 const btns = [rockBtn,paperBtn,scissorsBtn]
 rockBtn.addEventListener('click', function(){
     playerSelection = "rock"
-    console.log(playerSelection)
+    let computerSelection = getComputerChoice()
+    message.textContent = playRound(computerSelection , playerSelection)
+    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
+    if(playerScore >= 5){
+        message.textContent = "Player Wins!"
+    } else if (computerScore >= 5) {
+        message.textContent = "Computer Wins!"
+    }
 })
 paperBtn.addEventListener('click', function(){
     playerSelection = "paper"
-    console.log(playerSelection)
+    let computerSelection = getComputerChoice()
+    message.textContent = playRound(computerSelection , playerSelection)
+    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
+    if(playerScore >= 5){
+        message.textContent = "Player Wins!"
+    } else if (computerScore >= 5) {
+        message.textContent = "Computer Wins!"
+    }
 })
 scissorsBtn.addEventListener('click', function(){
     playerSelection = "scissors"
-    console.log(playerSelection)
+    let computerSelection = getComputerChoice()
+    message.textContent = playRound(computerSelection , playerSelection)
+    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
+    if(playerScore >= 5){
+        message.textContent = "Player Wins!"
+    } else if (computerScore >= 5) {
+        message.textContent = "Computer Wins!"
+    }
+
 })
 
 
 function playRound(computerSelection, playerSelection){
+
     if (computerSelection === "rock" && playerSelection ==="paper") {
         playerScore++
         return "You win! Paper beats rock!"
@@ -47,8 +75,11 @@ function playRound(computerSelection, playerSelection){
         computerScore++
         return `You lose! ${computerSelection} beats ${playerSelection}`
     }
-
 }
-/*document.body.innerHTML = `
-    Computer: ${computerScore} Player: ${playerScore}
-` */
+
+
+
+//playRound(computerSelection, playerSelection)
+//scores.innerHTML = `
+//    Computer: ${computerScore} Player: ${playerScore}
+//` 
