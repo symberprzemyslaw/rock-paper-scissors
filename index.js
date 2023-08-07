@@ -1,15 +1,13 @@
-const DOM = {
-
-    scores: document.querySelector("#scores"),
-    message: document.querySelector('#message'),
-    rockBtn: document.querySelector('#rock'),
-    paperBtn: document.querySelector('#paper'),
-    scissorsBtn: document.querySelector('#scissors'),
-    btns : [rockBtn, paperBtn, scissorsBtn]
-}
 
 const game = {
-    
+    DOM : {
+        scores: document.querySelector("#scores"),
+        message: document.querySelector('#message'),
+        rockBtn: document.querySelector('#rock'),
+        paperBtn: document.querySelector('#paper'),
+        scissorsBtn: document.querySelector('#scissors'),
+        btns : [rockBtn, paperBtn, scissorsBtn]
+    },
     playerSelection,
     computerScore : 0,
     playerScore : 0,
@@ -44,8 +42,10 @@ const game = {
 //it will be better if it was a function inside a game with two parameters and also
 //extraction of this funtions here to simply btn => game.chose(paper)
 
-rockBtn.addEventListener('click', function () {
-    playerSelection = "rock"
+
+const logic = playerSelection => {
+    const [message, scores] = game.DOM
+    const [playerScore, computerScore] = game
     let computerSelection = getComputerChoice()
     message.textContent = playRound(computerSelection, playerSelection)
     scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
@@ -54,27 +54,14 @@ rockBtn.addEventListener('click', function () {
     } else if (computerScore >= 5) {
         message.textContent = "Computer Wins!"
     }
+}
+
+rockBtn.addEventListener('click', function () {
+    logic('rock')
 })
 paperBtn.addEventListener('click', function () {
-    playerSelection = "paper"
-    let computerSelection = getComputerChoice()
-    message.textContent = playRound(computerSelection, playerSelection)
-    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
-    if (playerScore >= 5) {
-        message.textContent = "Player Wins!"
-    } else if (computerScore >= 5) {
-        message.textContent = "Computer Wins!"
-    }
+    logic('paper')
 })
 scissorsBtn.addEventListener('click', function () {
-    playerSelection = "scissors"
-    let computerSelection = getComputerChoice()
-    message.textContent = playRound(computerSelection, playerSelection)
-    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
-    if (playerScore >= 5) {
-        message.textContent = "Player Wins!"
-    } else if (computerScore >= 5) {
-        message.textContent = "Computer Wins!"
-    }
-
+    logic('scissors')
 })
