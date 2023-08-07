@@ -1,0 +1,14 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+#container {
+    margin: 3em;
+    text-align: center;
+
+}
+
+button {
+    padding: 10px;
+    min-height: 50px;
+    margin-bottom: 30px;
+}
