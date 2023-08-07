@@ -1,66 +1,27 @@
-function getComputerChoice(){
-    choices = ["rock", "paper", "scissors"]
-    let randomNum = Math.floor(Math.random() * 3)
-    return choices[randomNum]
+const DOM = {
+
+    scores: document.querySelector("#scores"),
+    message: document.querySelector('#message'),
+    rockBtn: document.querySelector('#rock'),
+    paperBtn: document.querySelector('#paper'),
+    scissorsBtn: document.querySelector('#scissors'),
+    btns : [rockBtn, paperBtn, scissorsBtn]
 }
 
-//UPDATE
-// do zrobienia :
-// Uporzdkowa to wszystko co tu jest, mniej tego kodu.
-// zrobic dne ui.
-const scores = document.querySelector("#scores")
-const message = document.querySelector('#message')
+const game = {
+    
+    playerSelection,
+    computerScore : 0,
+    playerScore : 0,
 
-const rockBtn = document.querySelector('#rock')
-const paperBtn = document.querySelector('#paper')
-const scissorsBtn = document.querySelector('#scissors')
+    getComputerChoice() {
+        choices = ["rock", "paper", "scissors"]
+        let randomNum = Math.floor(Math.random() * 3)
+        return choices[randomNum]
+    },
+    playRound(computerSelection, playerSelection) {
 
-
-//let playerSelection = prompt("Paper or what?").toLowerCase()
-let playerSelection;
-let computerScore = 0
-let playerScore = 0
-
-const btns = [rockBtn,paperBtn,scissorsBtn]
-rockBtn.addEventListener('click', function(){
-    playerSelection = "rock"
-    let computerSelection = getComputerChoice()
-    message.textContent = playRound(computerSelection , playerSelection)
-    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
-    if(playerScore >= 5){
-        message.textContent = "Player Wins!"
-    } else if (computerScore >= 5) {
-        message.textContent = "Computer Wins!"
-    }
-})
-paperBtn.addEventListener('click', function(){
-    playerSelection = "paper"
-    let computerSelection = getComputerChoice()
-    message.textContent = playRound(computerSelection , playerSelection)
-    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
-    if(playerScore >= 5){
-        message.textContent = "Player Wins!"
-    } else if (computerScore >= 5) {
-        message.textContent = "Computer Wins!"
-    }
-})
-scissorsBtn.addEventListener('click', function(){
-    playerSelection = "scissors"
-    let computerSelection = getComputerChoice()
-    message.textContent = playRound(computerSelection , playerSelection)
-    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
-    if(playerScore >= 5){
-        message.textContent = "Player Wins!"
-    } else if (computerScore >= 5) {
-        message.textContent = "Computer Wins!"
-    }
-
-})
-
-
-function playRound(computerSelection, playerSelection){
-
-    if (computerSelection === "rock" && playerSelection ==="paper") {
+    if (computerSelection === "rock" && playerSelection === "paper") {
         playerScore++
         return "You win! Paper beats rock!"
     } else if (computerSelection === "paper" && playerSelection === "scissors") {
@@ -76,10 +37,44 @@ function playRound(computerSelection, playerSelection){
         return `You lose! ${computerSelection} beats ${playerSelection}`
     }
 }
+}
 
 
+// Handling user inputs, but its very, verylong and nasty
+//it will be better if it was a function inside a game with two parameters and also
+//extraction of this funtions here to simply btn => game.chose(paper)
 
-//playRound(computerSelection, playerSelection)
-//scores.innerHTML = `
-//    Computer: ${computerScore} Player: ${playerScore}
-//` 
+rockBtn.addEventListener('click', function () {
+    playerSelection = "rock"
+    let computerSelection = getComputerChoice()
+    message.textContent = playRound(computerSelection, playerSelection)
+    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
+    if (playerScore >= 5) {
+        message.textContent = "Player Wins!"
+    } else if (computerScore >= 5) {
+        message.textContent = "Computer Wins!"
+    }
+})
+paperBtn.addEventListener('click', function () {
+    playerSelection = "paper"
+    let computerSelection = getComputerChoice()
+    message.textContent = playRound(computerSelection, playerSelection)
+    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
+    if (playerScore >= 5) {
+        message.textContent = "Player Wins!"
+    } else if (computerScore >= 5) {
+        message.textContent = "Computer Wins!"
+    }
+})
+scissorsBtn.addEventListener('click', function () {
+    playerSelection = "scissors"
+    let computerSelection = getComputerChoice()
+    message.textContent = playRound(computerSelection, playerSelection)
+    scores.textContent = `Player score: ${playerScore} Computer score: ${computerScore}`
+    if (playerScore >= 5) {
+        message.textContent = "Player Wins!"
+    } else if (computerScore >= 5) {
+        message.textContent = "Computer Wins!"
+    }
+
+})
